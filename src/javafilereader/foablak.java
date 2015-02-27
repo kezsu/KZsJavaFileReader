@@ -6,6 +6,12 @@
 
 package javafilereader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Diák
@@ -30,7 +36,7 @@ public class foablak extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        btnbetoltes = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -52,7 +58,12 @@ public class foablak extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton1.setText("jButton1");
+        btnbetoltes.setText("Betöltés");
+        btnbetoltes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbetoltesActionPerformed(evt);
+            }
+        });
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -128,7 +139,7 @@ public class foablak extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
-                        .addComponent(jButton1)))
+                        .addComponent(btnbetoltes)))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,7 +148,7 @@ public class foablak extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jButton1)
+                .addComponent(btnbetoltes)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
@@ -147,6 +158,20 @@ public class foablak extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void btnbetoltesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbetoltesActionPerformed
+        
+            File source = new File("src/javafilereader/source.txt");
+            try {
+                Scanner input=new Scanner(source);
+                 while (input.hasNextLine()){
+                     String row=input.nextLine();
+                     jTextArea1.append(row+"\n");
+                 }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(foablak.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_btnbetoltesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +210,7 @@ public class foablak extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton btnbetoltes;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
@@ -193,7 +219,6 @@ public class foablak extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuBar menuBar;
